@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.skplanet.tas</groupId>
+	<artifactId>review</artifactId>
+	<version>0.2.0-SNAPSHOT</version>
+
+	<!-- 프로젝트의 artifact 를 배포할 저장소 -->
+	<distributionManagement>
+		<repository>
+			<id>team-nlp-releases</id>
+			<name>team-nlp-releases</name>
+			<url>http://mvn.skplanet.com/content/repositories/team-nlp-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>team-nlp-snapshots</id>
+			<name>team-nlp-snapshots</name>
+			<url>http://mvn.skplanet.com/content/repositories/team-nlp-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+	<!-- dependency 에 정의된 라이브러리를 다운로드할 저장소 -->
+	<repositories>
+
+		<repository>
+			<id>skp-public</id>
+			<name>skplanet public repository</name>
+			<!-- <url>http://203.235.200.220:8085/nexus/content/groups/public/</url> -->
+			<url>http://mvn.skplanet.com/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<!-- <repository> <id>team-nlp-group</id> <name>team-nlp-group</name> <url>http://mvn.skplanet.com/content/groups/team-nlp-groups/</url> 
+			<releases> <enabled>true</enabled> </releases> <snapshots> <enabled>true</enabled> 
+			</snapshots> </repository> -->
+		<repository>
+			<id>snapshot-repository.java.net</id>
+			<name>Java.net Snapshot Repository for Maven</name>
+			<url>https://maven.java.net/content/repositories/snapshots/</url>
+			<layout>default</layout>
+		</repository>
+		<!-- <repository> <id>skp-public</id> <name>skplanet public repository</name> 
+			<url>http://203.235.200.220:8085/nexus/content/groups/public/</url> <url>http://mvn.skplanet.com/content/groups/public/</url> 
+			<releases> <enabled>true</enabled> </releases> <snapshots> <enabled>true</enabled> 
+			</snapshots> </repository> -->
+
+
+
+
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>weka-stable</artifactId>
+			<version>3.6.11</version>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>com.skplanet</groupId>
+			<artifactId>nlp_indexterm</artifactId>
+			<version>1.4.3-SNAPSHOT</version>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>com.skplanet.nlp.usermodeling</groupId>
+			<artifactId>reviewtopical</artifactId>
+			<version>0.9.3-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.skplanet.querycache</groupId>
+			<artifactId>querycache-jdbc</artifactId>
+			<version>0.20.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.thrift</groupId>
+			<artifactId>libthrift</artifactId>
+			<version>0.9.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.10</version>
+		</dependency>
+
+
+		<dependency>
+			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
+
+
+
+	</dependencies>
+
+</project>

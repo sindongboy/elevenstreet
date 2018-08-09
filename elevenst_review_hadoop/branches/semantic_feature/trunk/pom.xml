@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.skplanet.tas.hadoop</groupId>
+	<artifactId>review</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+
+	<!-- <properties> <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+		<hadoop.version>2.6.0-cdh5.4.2</hadoop.version> <hcatalog.version>1.1.0-cdh5.4.2</hcatalog.version> 
+		</properties> -->
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<hadoop.version>2.6.0-cdh5.5.1</hadoop.version>
+		<hcatalog.version>1.1.0-cdh5.5.1</hcatalog.version>
+		<!-- <spark.version>1.5.0-cdh5.5.1</spark.version> -->
+		<spark.version>1.6.1</spark.version>
+		<!-- <spark.version>1.5.2</spark.version> -->
+		<!-- <hcatalog.version>1.1.0-cdh5.5.2</hcatalog.version> -->
+		<!-- <hive.version>4.1.0-cdh5.5.2</hive.version> -->
+	</properties>
+
+	<!-- 프로젝트의 artifact 를 배포할 저장소 -->
+	<distributionManagement>
+		<repository>
+			<id>team-nlp-releases</id>
+			<name>team-nlp-releases</name>
+			<url>http://mvn.skplanet.com/content/repositories/team-nlp-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>team-nlp-snapshots</id>
+			<name>team-nlp-snapshots</name>
+			<url>http://mvn.skplanet.com/content/repositories/team-nlp-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<!-- <finalName>${project.artifactId}-semantic-hdfs</finalName> -->
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>libs/</classpathPrefix>
+							<classpathMavenRepositoryLayout>true</classpathMavenRepositoryLayout>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
+				<version>2.6</version> <configuration> <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
+				</descriptorRefs> </configuration> <executions> <execution> <id>make-assembly</id> 
+				<phase>package</phase> <goals> <goal>single</goal> </goals> </execution> 
+				</executions> </plugin> -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- <plugin> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-maven-plugin</artifactId> 
+				<version>4.0.1</version> <configuration> <api>JDO</api> <props>${basedir}/datanucleus.properties</props> 
+				<log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration> <verbose>true</verbose> 
+				</configuration> <executions> <execution> <phase>process-classes</phase> 
+				<goals> <goal>enhance</goal> </goals> </execution> </executions> </plugin> -->
+
+		</plugins>
+	</build>
+
+	<!-- dependency 에 정의된 라이브러리를 다운로드할 저장소 -->
+	<repositories>
+
+		<repository>
+			<id>cloudera</id>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+		</repository>
+
+		<repository>
+			<id>DN_Nightly_M2_Repo</id>
+			<url>http://www.datanucleus.org/downloads/maven2-nightly/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>skp-public</id>
+			<name>skplanet public repository</name>
+			<url>http://mvn.skplanet.com/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>team-nlp-group</id>
+			<name>team-nlp-group</name>
+			<url>http://mvn.skplanet.com/content/groups/team-nlp-groups/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>snapshot-repository.java.net</id>
+			<name>Java.net Snapshot Repository for Maven</name>
+			<url>https://maven.java.net/content/repositories/snapshots/</url>
+			<layout>default</layout>
+		</repository>
+
+
+
+
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.skplanet.tas</groupId>
+			<artifactId>review</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+			<!-- <exclusions> <exclusion> <artifactId>weka-stable</artifactId> <groupId>nz.ac.waikato.cms.weka</groupId> 
+				</exclusion> </exclusions> -->
+		</dependency>
+
+
+		<!-- <dependency> <groupId>org.apache.hive.hcatalog</groupId> <artifactId>hive-hcatalog-core</artifactId> 
+			<version>${hcatalog.version}</version> </dependency> -->
+
+
+		<dependency>
+			<groupId>org.apache.hive.hcatalog</groupId>
+			<artifactId>hive-hcatalog-core</artifactId>
+			<version>${hcatalog.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Hadoop -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>nz.ac.waikato.cms.weka</groupId> <artifactId>distributedWekaBase</artifactId> 
+			<version>1.0.12</version> </dependency> -->
+
+
+
+		<!-- <dependency> <groupId>org.datanucleus</groupId> <artifactId>javax.jdo</artifactId> 
+			<version>3.2.0-m3</version> </dependency> <dependency> <groupId>org.datanucleus</groupId> 
+			<artifactId>datanucleus-core</artifactId> <version>(4.1, 4.9)</version> <scope>runtime</scope> 
+			</dependency> <dependency> <groupId>org.datanucleus</groupId> <artifactId>datanucleus-api-jdo</artifactId> 
+			<version>[4.2.0-release, 4.9)</version> </dependency> <dependency> <groupId>org.datanucleus</groupId> 
+			<artifactId>datanucleus-rdbms</artifactId> <version>(4.1, 4.9)</version> 
+			<scope>runtime</scope> </dependency> <dependency> <groupId>org.datanucleus</groupId> 
+			<artifactId>datanucleus-accessplatform-jdo-rdbms</artifactId> <version>4.2.0-release</version> 
+			<type>pom</type> </dependency> -->
+
+	</dependencies>
+
+
+
+
+</project>
